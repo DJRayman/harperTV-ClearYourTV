@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Outfit has no Cyrillic, so Russian words fell back to the system's thin default next to Outfit's Latin and
+     read grey. Labels and names use the system family; the clock's digits keep Outfit (font_light, font_extralight). -->
+<resources>
+    <string name="font_regular" translatable="false">sans-serif</string>
+    <string name="font_medium" translatable="false">sans-serif-medium</string>
+</resources>

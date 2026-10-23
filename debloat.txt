@@ -1,0 +1,16 @@
+# Harper / SaluteTV (MediaTek m5621, Android 9) — отключено через pm disable-user --user 0
+# Телеметрия, промо, опросы
+ru.sberdevices.bugreporter
+ru.sberdevices.survey
+ru.sberdevices.smarthome.promo
+com.android.printspooler
+# Видео-сервисы Сбера (не используются)
+ru.sberdevices.videos
+ru.sberdevices.sberplay
+ru.sberdevices.startube
+ru.sberdevices.starkidsroom.prod
+ru.sberdevices.subscriptions
+# Музыка, браузер, заставка
+ru.sberdevices.music
+ru.sberdevices.starbrowser
+ru.sberdevices.starscreensaver

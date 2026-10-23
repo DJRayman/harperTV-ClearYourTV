@@ -1,0 +1,12 @@
+# Состояние конкретного ТВ: серийный номер, android_id, Bluetooth-адрес
+backup/
+# Чужие APK (SmartTube качается с GitHub проекта)
+apk/
+shots/
+*.log
+# Сборка
+launcher/.gradle/
+launcher/app/build/
+launcher/build/
+launcher/local.properties
+*.apk
