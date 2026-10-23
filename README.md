@@ -10,7 +10,7 @@ OFL, `launcher/FONT-LICENSE-OFL.txt`). Изменения в этом форке
 - русские надписи системным шрифтом (в Outfit нет кириллицы), белые приветствие и дата;
 - док под мои приложения, включены перестановка плиток и меню по долгому OK.
 
-ADB вызывается из WSL через обёртку над Windows-adb (`~/android/adbw`); ТВ: 192.168.100.172:5555.
+ADB вызывается из WSL через обёртку над Windows-adb (`~/android/adbw`). Адрес ТВ подставляется вместо `TV_IP` (порт 5555).
 
 - debloat.txt    — отключённые пакеты (pm disable-user --user 0)
 - restore.sh     — включает всё обратно, возвращает заставку и лаунчер Сбера
@@ -19,7 +19,7 @@ ADB вызывается из WSL через обёртку над Windows-adb (
 Лаунчер Сбера НЕ отключён — он остаётся запасным, через него открываются веб-приложения Салюта (иви и т.п.).
 
 ## Включить одно приложение обратно
-    ~/android/adbw -s 192.168.100.172:5555 shell pm enable --user 0 ru.sberdevices.videos
+    ~/android/adbw -s TV_IP:5555 shell pm enable --user 0 ru.sberdevices.videos
 
 ## Поменять док / пересобрать лаунчер
 Док: launcher/app/src/main/res/values/config.xml → dock_apps (сейчас zona, NUM, Lift). Затем:
@@ -28,7 +28,7 @@ ADB вызывается из WSL через обёртку над Windows-adb (
     export JAVA_HOME=~/android/tools/jdk-21.0.12.1+1 PATH=$JAVA_HOME/bin:$PATH
     ./gradlew assembleDebug
     cp app/build/outputs/apk/debug/app-debug.apk /mnt/c/Users/RomaD/tvhome.apk
-    ~/android/adbw -s 192.168.100.172:5555 install -r 'C:\Users\RomaD\tvhome.apk'
+    ~/android/adbw -s TV_IP:5555 install -r 'C:\Users\RomaD\tvhome.apk'
 
 Перестановка: кнопка ⇅ в верхней панели (OK — взять, стрелки — двигать, Назад — поставить, ещё раз Назад — готово) или долгое OK на плитке → «Переместить». Порядок хранится в лаунчере и переживает перезагрузку.
 
