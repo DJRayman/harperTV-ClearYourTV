@@ -72,6 +72,14 @@
     <string name="rows_below_dock_label">Рядов под доком</string>
     <string name="wallpaper_label">Обои</string>
     <string name="wallpaper_state">Обои: %1$s</string>
+    <string name="power_label">Энергопотребление</string>
+    <string name="power_state">Энергопотребление: %1$s</string>
+    <string name="power_system">как в системе</string>
+    <string name="power_economy">Экономия (как в прошивке, 3 приложения)</string>
+    <string name="power_balanced">Сбалансированный: 8 приложений в фоне</string>
+    <string name="power_multitasking">Многозадачность: 16 приложений в фоне</string>
+    <string name="power_hint">Сколько приложений остаётся открытыми в фоне. Чем больше, тем реже они перезапускаются с начала, но тем больше занято памяти; если ТВ начнёт тормозить, выберите режим поскромнее.</string>
+    <string name="power_needs_permission">Нет разрешения: выполните adb shell pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="wallpaper_none">Нет</string>
     <string name="wallpaper_applied">Обои изменены</string>
     <string name="wallpaper_theme_default">Как в теме</string>

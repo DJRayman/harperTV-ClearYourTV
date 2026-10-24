@@ -12,6 +12,11 @@ OFL, `launcher/FONT-LICENSE-OFL.txt`). Изменения в этом форке
 - «Источники» → «Эфирное ТВ»: вход с антенны. В Sber OS у эфирного ТВ нет обычной точки входа; лаунчер шлёт
   тот же запрос, что голосовой Салют («Открой ТВ»): `VIEW livetv://playback/channel` в `ru.sberdevices.starlivetv`
   (настройки `live_tv_package` и `live_tv_uri` в config.xml).
+- Настройки лаунчера (долгое OK на «Настройки») → «Энергопотребление»: сколько приложений Android держит в фоне.
+  Прошивка задаёт `activity_manager_constants=max_cached_processes=3`, поэтому третье свёрнутое приложение
+  выгружается. Режимы: «Экономия» (как в прошивке, 3), «Сбалансированный» (8), «Многозадачность» (16).
+  Лаунчер применяет режим при каждом запуске (`PowerMode.java`). Нужно разрешение, один раз:
+  `adb shell pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS`.
 
 ADB вызывается из WSL через обёртку над Windows-adb (`~/android/adbw`). Адрес ТВ подставляется вместо `TV_IP` (порт 5555).
 

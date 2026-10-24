@@ -24,6 +24,7 @@ public final class LauncherSettingsActivity extends Activity {
     private static final int[] DOCK_OPACITIES = {100, 70, 50, 30};
     private final TextView[] dockChoices = new TextView[DOCK_OPACITIES.length];
     private TextView wallpaperChoice;
+    private TextView powerChoice;
     private TextView animationsChoice;
     private TextView advancedChoice;
     private TextView followThemeChoice;
@@ -96,6 +97,8 @@ public final class LauncherSettingsActivity extends Activity {
         }
         wallpaperChoice = findViewById(R.id.wallpaperChoice);
         wallpaperChoice.setOnClickListener(v -> showWallpaperPicker());
+        powerChoice = findViewById(R.id.powerChoice);
+        powerChoice.setOnClickListener(v -> showPowerPicker());
         animationsChoice = findViewById(R.id.animationsChoice);
         animationsChoice.setOnClickListener(v -> {
             animations = !animations;
@@ -186,6 +189,25 @@ public final class LauncherSettingsActivity extends Activity {
                 .show();
     }
 
+    private static final int[] POWER_LABELS = {R.string.power_economy, R.string.power_balanced,
+            R.string.power_multitasking};
+
+    private void showPowerPicker() {
+        String[] labels = new String[POWER_LABELS.length];
+        for (int i = 0; i < labels.length; i++) labels[i] = getString(POWER_LABELS[i]);
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.power_label)
+                .setSingleChoiceItems(labels, PowerMode.chosen(choices), (dialog, which) -> {
+                    dialog.dismiss();
+                    if (!PowerMode.set(this, choices, which)) {
+                        Toast.makeText(this, R.string.power_needs_permission, Toast.LENGTH_LONG).show();
+                    }
+                    refresh();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
     private static int indexOf(List<File> images, String name) {
         if (name == null) return -1;
         for (int i = 0; i < images.size(); i++) {
@@ -232,6 +254,9 @@ public final class LauncherSettingsActivity extends Activity {
                 "none".equals(wallpaperCurrent) ? getString(R.string.wallpaper_none)
                         : wallpaperCurrent != null ? wallpaperCurrent
                         : getString(R.string.wallpaper_theme_default)));
+        int power = PowerMode.chosen(choices);
+        powerChoice.setText(getString(R.string.power_state,
+                getString(power < 0 ? R.string.power_system : POWER_LABELS[power])));
         followThemeChoice.setSelected(!hasOnTvChoices());
     }
 

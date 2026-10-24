@@ -11,3 +11,5 @@ $ADB -s "$TV" shell settings put secure screensaver_components ru.sberdevices.st
 $ADB -s "$TV" shell settings put secure screensaver_enabled 1
 # Вернуть лаунчер Сбера домашним экраном (новый лаунчер можно удалить: pm uninstall com.gathin.tvhome)
 $ADB -s "$TV" shell cmd package set-home-activity --user 0 ru.sberdevices.starlauncher/.ui.mainscreen.MainActivity
+# Лимит фоновых приложений как в прошивке (режим «Экономия»)
+$ADB -s "$TV" shell settings put global activity_manager_constants max_cached_processes=3

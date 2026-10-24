@@ -51,6 +51,14 @@
     <string name="dock_opacity_label">Dock band opacity</string>
     <string name="wallpaper_label">Wallpaper</string>
     <string name="wallpaper_state">Wallpaper: %1$s</string>
+    <string name="power_label">Power mode</string>
+    <string name="power_state">Power mode: %1$s</string>
+    <string name="power_system">System default</string>
+    <string name="power_economy">Economy (firmware default)</string>
+    <string name="power_balanced">Balanced: 8 apps in background</string>
+    <string name="power_multitasking">Multitasking: 16 apps in background</string>
+    <string name="power_hint">How many apps stay open in the background. More apps resume where you left them but use more memory; if the TV gets slow, step back.</string>
+    <string name="power_needs_permission">Not allowed: run adb shell pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="wallpaper_none">None</string>
     <string name="wallpaper_applied">Wallpaper changed</string>
     <string name="wallpaper_theme_default">Theme default</string>
