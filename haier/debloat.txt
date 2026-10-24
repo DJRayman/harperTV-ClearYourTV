@@ -1,0 +1,33 @@
+# Haier Android TV DVB2K (device broadway, product HaierATVT56DVB), Android TV 11 (API 30), firmware RTMA.250416.179,
+# 1280x720, about 934 MB RAM. Based on CleanYourTV examples/haier-android-tv-dvb2k (same model and firmware).
+# Disabled with pm disable-user --user 0. Same choices as ../hyundai: voice (katniss), Chromecast (mediashell),
+# YouTube Music and Play Games kept; Netflix and Prime Video disabled.
+# Already disabled at the factory: talkback, com.cltv.fast, com.haier.launcher.haiermatrix.
+# The firmware re-enables com.netflix.ninja and com.google.android.tvrecommendations at every boot (checked after
+# one reboot); tvrecommendations only fed the stock launcher, which is disabled.
+# Left enabled: ag.a24h.evotvch (user app).
+# KEEP (see the example): com.haier.tv.hmagicboard, com.cvte.tv.hkcfac (remote hot keys), com.example.bt_pair_tips,
+# com.mediatek.autopair, com.telink.lt.ota (remote), every factory package (com.at.factory.*, com.cvte.tv.fac.*,
+# mediatek.factorymenu.ui: never open them), com.mediatek.* (Live TV, inputs, USB media, Miracast).
+
+# Batch 1: content recognition, retail demo, Haier telemetry and share
+tv.anoki.acr.controller
+fusion.android.tv.demo
+com.haierubic.usmartdevice
+com.haier.yudee.tv
+com.haier.sharetv.webview
+com.haier.apps
+# Batch 2: cleaner, app manager, recommendation rows, partner auto-install
+com.haier.tvhousekeeper
+com.cvte.haier.tv.appmanager
+com.google.android.tvrecommendations
+com.google.android.feedback
+com.google.android.partnersetup
+com.mediatek.android.leanbacklauncher.partnercustomizer
+android.autoinstalls.config.haier.hanyang
+# Batch 3: preinstalled streaming apps not used
+com.netflix.ninja
+com.amazon.amazonvideo.livingroom
+# Haier Evo (also claims HOME) and its promo, by the owner's choice
+ru.haier.evo
+com.haier.apps.evoSmart
