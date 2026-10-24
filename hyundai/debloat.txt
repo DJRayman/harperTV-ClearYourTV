@@ -1,0 +1,30 @@
+# Hyundai AI PONT (Changhong, device longshan, product DVB95ML), Android TV 14 (API 34), firmware UKNV.260518.001,
+# 1.8 GB RAM, 4K panel at 1920x1080 UI. Vendor layer Homwee, stock launcher com.google.android.tvlauncher.
+# Based on CleanYourTV examples/rca-ai-pont and aiwa-ai-pont-sa. Disabled with pm disable-user --user 0.
+# Kept by choice: katniss (voice), mediashell (Chromecast), youtube.tvmusic, play.games, homwee.upgrade +
+# dmt.upgrade (firmware), multiscreenshare + mmp.screenshare (Miracast), mmp.fileexplorer + imageplayer (USB).
+# KEEP always: com.google.android.leanbacklauncher.partnercustomizer (remote hotkeys crash-loop without it),
+# com.homwee.factory, com.homwee.synckey, com.mediatek.*, setupwraith (owns a saved Wi-Fi network; left alone).
+# The firmware re-enables com.cltv.fast (FAST channels) at every boot; disabling it again only lasts until reboot.
+# Stock launcher com.google.android.tvlauncher is disabled separately, after com.gathin.tvhome is Home: holding the
+# HOME role was not enough, the stock launcher kept answering Home while enabled.
+
+# Batch 1: telemetry, ads, recommendation rows
+tv.anoki.acr.anokiacroptin
+com.cltv.fast
+com.google.android.tvrecommendations
+com.google.android.feedback
+com.android.tv.feedbackconsent
+com.homwee.aipont
+# Batch 2: vendor store, installers, cleaner, Alexa
+com.homwee.store
+com.homwee.help
+com.homwee.chinstallapk
+com.homwee.chtvmanager
+android.autoinstalls.config.homwee
+com.homwee.alexacontrol
+# Batch 3: preinstalled apps not used, setup leftovers
+com.netflix.ninja
+com.amazon.amazonvideo.livingroom
+com.google.android.partnersetup
+com.google.android.syncadapters.calendar

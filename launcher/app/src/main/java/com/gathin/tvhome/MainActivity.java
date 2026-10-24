@@ -372,7 +372,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         focusOvershoot = cfg.focusOvershoot;
         festival = cfg.festival;
         festive = festival.active(LocalDate.now());
-        liveTvPkg = cfg.liveTvPackage;
+        liveTvPkg = firstInstalled(cfg.liveTvPackage);
         idleClockMs = cfg.homeIdleClockMinutes * MINUTE_MS;
         bootToLiveTv = cfg.bootToLiveTv;
         liveTvAction = cfg.liveTvAction;
@@ -2593,6 +2593,20 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         if (i != null || liveTvAction.isEmpty()) return i;
         Intent byAction = new Intent(liveTvAction).setPackage(liveTvPkg);
         return getPackageManager().resolveActivity(byAction, 0) != null ? byAction : null;
+    }
+
+    /** The first installed and enabled package of a comma-separated live_tv_package list, or "" for none. */
+    private String firstInstalled(String packages) {
+        for (String pkg : packages.split(",")) {
+            pkg = pkg.trim();
+            if (pkg.isEmpty()) continue;
+            try {
+                if (getPackageManager().getApplicationInfo(pkg, 0).enabled) return pkg;
+            } catch (PackageManager.NameNotFoundException ignored) {
+                // not on this TV: try the next one
+            }
+        }
+        return "";
     }
 
     /** config.xml live_tv_uri sent to the Live TV app, or null when it is not set or the app does not take it. */

@@ -33,7 +33,9 @@
     </string-array>
 
     <!-- The TV's Live TV / tuner app, offered at the end of the Inputs menu. Leave empty to omit. -->
-    <string name="live_tv_package" translatable="false">ru.sberdevices.starlivetv</string>
+    <!-- Several packages may be listed, comma-separated: the first one installed and enabled is used, so one build
+         serves a Sber OS set (starlivetv) and a MediaTek Android TV (tvcenter). -->
+    <string name="live_tv_package" translatable="false">ru.sberdevices.starlivetv,com.mediatek.wwtv.tvcenter</string>
     <!-- A URI the Live TV app opens with ACTION_VIEW, sent instead of its leanback entry point and instead of
          tuning an input. Sber OS (SaluteTV) has no leanback entry for broadcast TV; its voice assistant sends
          livetv://playback/channel to ru.sberdevices.starlivetv, which plays the last antenna channel. Empty = off. -->
