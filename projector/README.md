@@ -40,10 +40,12 @@ Droidlogic `t950s_be311`, платформа `txhd2`, Android TV 13 (сборк�
   Служба `com.droidlogic.keystone` — НЕ отключать (см. пример stellamore: ломается геометрия).
 - Пульт Bluetooth `RMP5` (HID), Wi-Fi/BT Seekwave, звук HDMI ARC, температура SoC ~46 °C.
 
-## Кандидаты на отключение (пока не трогали)
-- `com.whale.display` — Zeasn, поставлен магазином Jixin 18.09.2026 сам; внутри рекламный модуль
-  (`com.zeasn.ad.connector`) и служба специальных возможностей `ABService` (сейчас выключена).
-- `com.jixin.apppush` (тихая доставка приложений), `com.jixin.appstore2`, `com.jixin.analytics`,
-  `com.jixin.dispatcher` (голосовые команды для китайского ассистента), `com.google.android.tvrecommendations`,
-  `com.jixin.netflix`, `com.netflix.mediaclient`.
-- НЕ трогать: `com.droidlogic.keystone`, `com.jixin.settings5`, `com.jixin.factorytest` (не открывать), `com.droidlogic.*`.
+## Отключено (debloat.txt)
+11 пакетов: `com.whale.display` (Zeasn, реклама + служба спец. возможностей, поставлен магазином сам),
+`com.jixin.apppush`, `com.jixin.analytics`, `com.jixin.appstore2` (с плагинами Baidu), рекомендации Google,
+мастер `com.jixin.guide`, рекламные фреймворки Android (`adservices`, `ondevicepersonalization`), печать, Netflix
+(`com.netflix.mediaclient`, `com.jixin.netflix`). Освободилось ~55 МБ (из памяти ушли магазин с OTA-плагином,
+рекомендации, аналитика). Вернуть: `TV=<ip>:<порт> ./restore.sh`.
+- Оставлены: обновления (`com.jixin.ota`), повтор экрана (EShare, Emotn, Miracast), файлы, музыка, BT-колонка.
+- НЕ трогать: `com.droidlogic.keystone`, `com.jixin.settings5`, `com.jixin.dispatcher` (в нём провайдеры
+  вентилятора, трапеции, ручного фокуса и источников), `com.jixin.factorytest` (не открывать), `com.droidlogic.*`.
