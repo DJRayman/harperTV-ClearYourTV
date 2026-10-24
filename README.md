@@ -34,6 +34,7 @@ ADB вызывается из WSL через обёртку над Windows-adb (
 - hyundai/       — второй телевизор (Hyundai AI PONT, Android TV 14): свой debloat и заметки
 - haier/         — третий телевизор (Haier Android TV DVB2K, Android TV 11)
 - projector/     — проектор Jixin на Amlogic T950S (Android TV 13): лаунчер и разбор настроек
+- hidden-settings/ — приложение «Скрытые настройки» (запуск скрытых экранов проектора, Amlogic и Android TV)
 
 Лаунчер Сбера НЕ отключён — он остаётся запасным, через него открываются веб-приложения Салюта (иви и т.п.).
 

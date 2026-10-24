@@ -5,8 +5,9 @@ apk/
 shots/
 *.log
 # Сборка
-launcher/.gradle/
-launcher/app/build/
-launcher/build/
-launcher/local.properties
+.gradle/
+**/app/build/
+/launcher/build/
+/hidden-settings/build/
+local.properties
 *.apk

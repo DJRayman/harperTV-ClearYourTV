@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 16:9 banner for the TV home screen: the sliders on a dark card. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp" android:height="180dp" android:viewportWidth="320" android:viewportHeight="180">
+    <path android:fillColor="#FF1F2A36" android:pathData="M0,0h320v180h-320z" />
+    <group android:translateX="112" android:translateY="42" android:scaleX="4" android:scaleY="4">
+        <path android:fillColor="#FFFFFFFF"
+            android:pathData="M4,6h9v2h-9zM17,6h3v2h-3zM13,4.5h2.5v5h-2.5zM4,11h3v2h-3zM11,11h9v2h-9zM7,9.5h2.5v5h-2.5zM4,16h11v2h-11zM19,16h1v2h-1zM15,14.5h2.5v5h-2.5z" />
+    </group>
+</vector>
