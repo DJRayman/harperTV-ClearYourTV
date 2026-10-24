@@ -1,0 +1,49 @@
+# Проектор Jixin на Amlogic T950S (t950s_be311, Android TV 13)
+
+Droidlogic `t950s_be311`, платформа `txhd2`, Android TV 13 (сборка `userdebug`, test-keys, **SELinux выключен**),
+~1 ГБ RAM, интерфейс 1280×720 (приложения Jixin рисуют 1920×1080). Прошивка Jixin
+(`persist.jx.ota2.flavor=t950s_lps1_atvjlauncher2_ts9_with_miracast_Emotn`). ADB — беспроводная отладка,
+порт меняется после каждого отключения Wi-Fi. Похожий пример в CleanYourTV: `examples/stellamore-t950s`
+(тот же чип, другой вендор).
+
+## Лаунчер
+Стоит `../launcher`. Обычных `set-home-activity` и роли HOME мало: Jixin добавил в PackageManager свой фильтр
+(«Match highpriority launcher app»), который выбирает Home по свойству
+`persist.jx.launcher.highpriority` (было `com.google.android.tvlauncher`). Поставлено
+`setprop persist.jx.launcher.highpriority com.gathin.tvhome` (shell может, SELinux выключен); `tvlauncher` не
+отключён. Вернуть: `TV=<ip>:<порт> ./restore.sh`. Кнопка «Настройки» лаунчера открывает настройки Jixin
+(они зарегистрированы как `android.settings.SETTINGS`). Источники: HDMI1, AV1 (тюнера нет).
+
+## Настройки проектора (com.jixin.settings5)
+Экраны (открываются `am start -n com.jixin.settings5/.<Activity>`):
+- `SettingsActivity` — главное меню: Сеть, Bluetooth, Источник, Аккаунт; Дисплей: режим проекции, настройка
+  трапеции/фокуса, четырёхугловая коррекция, масштаб; Язык, Время, Обновление, Сброс, О проекторе.
+- `ProjectionTypeActivity` — обычная / задняя / потолок-передняя / потолок-задняя (сейчас обычная).
+- `FocusSettingsActivity` — автофокус, автотрапеция, автофокус при запуске, авто-трапеция при запуске (всё вкл.).
+- `BrightnessControlActivity` — высокая / стандартная (выбрана) / экономия. **Не переведён: показывается на тайском.**
+  Тот же выбор есть в диалоге `am broadcast -a jixin.intent.action.BRIGHNESS_MODE_DIALOG -p com.jixin.settings5`
+  (на русском; подсказки про время работы 1–3,5 ч от батареи — общий текст прошивки, Android батареи не видит).
+- `AspectRatioCaleActivity` — масштаб изображения стрелками (100), Меню — сброс.
+- Также есть: `InputSourceSelectActivity`, `DeskClockActivity` (часы, они же заставка), `NetflixControlSwitchActivity`,
+  `com.jixin.starlight.AmbientLightControlActivity` и `StarProjectorActivity` (подсветка / «звёздное небо», вероятно
+  для других моделей), `FactoryResetActivity` (не открывать).
+Скрытые диалоги (кнопки пульта), `am broadcast -a jixin.intent.action.<X> -p com.jixin.settings5`:
+- `PQ` — режим изображения (стандартный, яркий, живой, фильм, спорт, пользовательский) и режим звука; вёрстка
+  наезжает друг на друга при 1280×720.
+- `SETTINGS_DIALOG` — быстрое меню: режим изображения, таймер, фокус, Bluetooth.
+
+## Железо (по свойствам)
+- 6-осевой датчик положения (`jx.sensor.exist=6-axis`) — автотрапеция; калибровка в `persist.jx.gsensor.calibratedata`.
+- Лазерный датчик расстояния ToF (`da0103`, службы `tof_*`) — автофокус; `persist.jx.tof.focus.steps1=-200`.
+- Камера 640×480 (`persist.jx.camera.img_*`).
+- Аппаратная трапеция в HWC: `persist.vendor.hwc.keystone` = 4 угла (`0,72 1883,48 1734,917 159,965`).
+  Служба `com.droidlogic.keystone` — НЕ отключать (см. пример stellamore: ломается геометрия).
+- Пульт Bluetooth `RMP5` (HID), Wi-Fi/BT Seekwave, звук HDMI ARC, температура SoC ~46 °C.
+
+## Кандидаты на отключение (пока не трогали)
+- `com.whale.display` — Zeasn, поставлен магазином Jixin 18.09.2026 сам; внутри рекламный модуль
+  (`com.zeasn.ad.connector`) и служба специальных возможностей `ABService` (сейчас выключена).
+- `com.jixin.apppush` (тихая доставка приложений), `com.jixin.appstore2`, `com.jixin.analytics`,
+  `com.jixin.dispatcher` (голосовые команды для китайского ассистента), `com.google.android.tvrecommendations`,
+  `com.jixin.netflix`, `com.netflix.mediaclient`.
+- НЕ трогать: `com.droidlogic.keystone`, `com.jixin.settings5`, `com.jixin.factorytest` (не открывать), `com.droidlogic.*`.
