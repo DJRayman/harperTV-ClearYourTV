@@ -49,3 +49,12 @@ Droidlogic `t950s_be311`, платформа `txhd2`, Android TV 13 (сборк�
 - Оставлены: обновления (`com.jixin.ota`), повтор экрана (EShare, Emotn, Miracast), файлы, музыка, BT-колонка.
 - НЕ трогать: `com.droidlogic.keystone`, `com.jixin.settings5`, `com.jixin.dispatcher` (в нём провайдеры
   вентилятора, трапеции, ручного фокуса и источников), `com.jixin.factorytest` (не открывать), `com.droidlogic.*`.
+
+## Обновление прошивки (проверено 24.10.2026)
+Текущая: `2025.06.28.115349` (сборка 28.06.2025), Android 13, патч безопасности 2023-04-05, userdebug, SELinux off.
+Онлайн-обновление (`com.jixin.ota/.OnlineOtaActivity`, OtaService 2.0.1) ищет
+`ota2/t950s_lps1_atvjlauncher2_ts9_with_miracast_Emotn/ota_cfg.json` на трёх серверах:
+`www.chasecolor.com:8080` — таймаут, `www.ji-xintech.com` — 404, `192.168.50.24` — заводская локальная сеть.
+Надпись «Это уже последняя версия» показывается при любой ошибке, т.е. канала обновлений для этой прошивки
+просто нет. Ставить чужие образы T950S не стоит: калибровка трапеции, ToF и датчик положения привязаны к этой сборке.
+Обновление с флешки — `com.jixin.ota/.LocalOtaActivity`, только если продавец пришлёт официальный образ.
