@@ -54,6 +54,7 @@ final class Catalog {
     private static final String JIXIN = "com.jixin.settings5";
     private static final String AML = "com.droidlogic.tv.settings";
     private static final String AOSP = "com.android.tv.settings";
+    private static final String BT = "com.jixin.btspeaker";
 
     static final List<Section> SECTIONS = Arrays.asList(
             new Section("Проектор",
@@ -83,6 +84,13 @@ final class Catalog {
                             "com.jixin.starlight.AmbientLightControlActivity"),
                     screen("Звёздное небо", "Может не поддерживаться этой моделью", JIXIN,
                             "com.jixin.starlight.StarProjectorActivity")),
+            new Section("Bluetooth",
+                    screen("Наушники и колонки", "Подключить Bluetooth-наушники или колонку к проектору",
+                            BT, BT + ".SourceModeActivity"),
+                    screen("Проектор как Bluetooth-колонка", "Звук с телефона через проектор",
+                            BT, BT + ".MainActivity"),
+                    screen("Сопряжение пульта", "Инструкция: зажать Влево и Вправо на пульте",
+                            BT, BT + ".BluetoothPairNormalActivity")),
             new Section("Изображение и звук (Amlogic)",
                     screen("Режим изображения", "Подробные настройки картинки", AML,
                             AML + ".pqsettings.PictureModeActivity"),

@@ -85,3 +85,13 @@ Droidlogic `t950s_be311`, платформа `txhd2`, Android TV 13 (сборк�
   `i2cget -f -y 2 0x37 0x0c`). Эксперимент с оборотами остановлен по решению владельца (лог `backup/imuprobe.log`):
   **вентиляторы всегда на 100%**, автоматику не делаем. После `adb root`/`unroot` открыт порт 5555
   (`service.adb.tcp.port`, не persist — закроется после перезагрузки).
+
+## Bluetooth
+- `com.jixin.btspeaker`: `SourceModeActivity` — наушники/колонки (`jixin.intent.action.BLUETOOTH_MODE_SOURCE`, его
+  шлёт плитка Bluetooth в настройках Jixin), режим колонки — приватные `DefaultSinkModeActivity`/`RsdSinkModeActivity`,
+  сопряжение пульта — `BluetoothPairNormalActivity` (зажать Влево+Вправо). Поддерживаются только аудио-устройства.
+- Ошибка прошивки: «выбор режима» `btspeaker/.MainActivity` (`BLUETOOTH_MODE_SELECTER`) в `onCreate` сразу
+  запускает режим колонки и закрывается — выбрать наушники с него нельзя.
+- Стандартный `android.settings.BLUETOOTH_SETTINGS` на проекторе не обрабатывал никто.
+- Исправлено приложением «Скрытые настройки»: `BluetoothActivity` отвечает на оба действия и предлагает
+  наушники/колонки, проектор как колонку, сопряжение пульта; для `BLUETOOTH_MODE_SELECTER` выбрано «Всегда».
