@@ -153,4 +153,15 @@
     <!-- Cinematic top shelf (cinematic_home): the line under the focused dock app's name; %1$s is when it was
          last opened, e.g. "5 minutes ago" or "yesterday, 9:40 pm". -->
     <string name="last_opened">Последний запуск: %1$s</string>
+    <string name="info_key_service_label">Информация о воспроизведении (кнопка Info)</string>
+    <string name="info_key_service_description">По кнопке Info на пульте показывает разрешение видео и формат звука.</string>
+    <string name="info_loading">Получаю информацию…</string>
+    <string name="info_no_permission">Нет доступа: выполните adb shell pm grant com.gathin.tvhome android.permission.DUMP</string>
+    <string name="info_video">Видео: %1$s</string>
+    <string name="info_screen">Экран: %1$s</string>
+    <string name="info_audio">Звук: %1$s</string>
+    <string name="info_output">Выход: %1$s</string>
+    <string name="info_none">ничего не воспроизводится</string>
+    <string name="info_tv_input">ТВ-вход (HDMI или тюнер)</string>
+    <string name="info_audio_silent">тишина или идёт мимо Android (ТВ-вход)</string>
 </resources>

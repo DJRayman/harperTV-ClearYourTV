@@ -153,4 +153,15 @@
     <!-- Cinematic top shelf (cinematic_home): the line under the focused dock app's name; %1$s is when it was
          last opened, e.g. "5 minutes ago" or "yesterday, 9:40 pm". -->
     <string name="last_opened">Last opened %1$s</string>
+    <string name="info_key_service_label">Playback info (Info button)</string>
+    <string name="info_key_service_description">Shows the video resolution and audio format when the remote\'s Info button is pressed.</string>
+    <string name="info_loading">Reading playback info…</string>
+    <string name="info_no_permission">No access: run adb shell pm grant com.gathin.tvhome android.permission.DUMP</string>
+    <string name="info_video">Video: %1$s</string>
+    <string name="info_screen">Screen: %1$s</string>
+    <string name="info_audio">Audio: %1$s</string>
+    <string name="info_output">Output: %1$s</string>
+    <string name="info_none">nothing playing</string>
+    <string name="info_tv_input">TV input (HDMI or tuner)</string>
+    <string name="info_audio_silent">silent, or played outside Android (TV input)</string>
 </resources>

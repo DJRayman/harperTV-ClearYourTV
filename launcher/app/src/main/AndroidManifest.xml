@@ -7,6 +7,10 @@
     <uses-feature android:name="android.hardware.wifi" android:required="false" />
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
 
+    <!-- InfoKeyService reads dumpsys SurfaceFlinger and media.audio_flinger. A development permission: never
+         requested at runtime, granted over adb with pm grant com.gathin.tvhome android.permission.DUMP. -->
+    <uses-permission android:name="android.permission.DUMP"
+        tools:ignore="ProtectedPermissions" />
     <!-- OnlineWallpapers: Bing's picture of the day, once a day. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -192,6 +196,21 @@
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/input_key_service" />
+        </service>
+
+        <!-- The remote's Info button shows the playing video's resolution and the audio format over any app; see
+             InfoKeyService. Needs pm grant com.gathin.tvhome android.permission.DUMP. -->
+        <service
+            android:name=".InfoKeyService"
+            android:exported="false"
+            android:label="@string/info_key_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/info_key_service" />
         </service>
     </application>
 </manifest>

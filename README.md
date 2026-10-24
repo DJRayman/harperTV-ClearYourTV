@@ -18,6 +18,13 @@ OFL, `launcher/FONT-LICENSE-OFL.txt`). Изменения в этом форке
   выгружается. Режимы: «Экономия» (как в прошивке, 3), «Сбалансированный» (8), «Многозадачность» (16).
   Лаунчер применяет режим при каждом запуске (`PowerMode.java`). Нужно разрешение, один раз:
   `adb shell pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS`.
+- Кнопка **Info** на пульте в любом приложении показывает карточку: приложение, разрешение видео и HDR/SDR,
+  режим экрана, формат звука (PCM / Dolby Digital / DD+ / Atmos / DTS), каналы, частоту и выход (динамики,
+  HDMI ARC, Bluetooth). Данные берутся из `dumpsys SurfaceFlinger` и `media.audio_flinger` (`MediaInfo.java`,
+  `InfoKeyService.java`). Включение, один раз:
+  `adb shell pm grant com.gathin.tvhome android.permission.DUMP` и служба специальных возможностей
+  `com.gathin.tvhome/com.gathin.tvhome.InfoKeyService` в `enabled_accessibility_services`.
+  Нажатия, отправленные через `adb shell input`, до службы не доходят, проверять только настоящим пультом.
 
 ADB вызывается из WSL через обёртку над Windows-adb (`~/android/adbw`). Адрес ТВ подставляется вместо `TV_IP` (порт 5555).
 
