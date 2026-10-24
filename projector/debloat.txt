@@ -3,7 +3,10 @@
 # Emotn, Miracast), USB files kept; Netflix disabled.
 # KEEP: com.droidlogic.keystone (geometry), com.jixin.settings5 (projector settings), com.jixin.dispatcher (hosts the
 # Fan, Keystone, ManualFocus, FocusSettings and InputSource providers), com.jixin.ota (firmware),
-# com.droidlogic.*, com.jixin.factorytest (never open), com.jixin.launcher2 and tvlauncher (fallback Home).
+# com.droidlogic.*, com.jixin.factorytest (never open).
+# Stock launchers com.google.android.tvlauncher and com.jixin.launcher2 are disabled separately (see README):
+# Jixin's boot-source screen clears persist.jx.launcher.highpriority, and only with no other launcher left does Home
+# still land on com.gathin.tvhome.
 
 # Batch 1: adware, silent installs, analytics
 com.whale.display                   # Zeasn ad connector + accessibility service, pushed by the Jixin store

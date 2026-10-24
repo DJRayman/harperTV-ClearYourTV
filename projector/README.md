@@ -10,13 +10,15 @@ Droidlogic `t950s_be311`, платформа `txhd2`, Android TV 13 (сборк�
 Стоит `../launcher`. Обычных `set-home-activity` и роли HOME мало: Jixin добавил в PackageManager свой фильтр
 («Match highpriority launcher app»), который выбирает Home по свойству
 `persist.jx.launcher.highpriority` (было `com.google.android.tvlauncher`). Поставлено
-`setprop persist.jx.launcher.highpriority com.gathin.tvhome` (shell может, SELinux выключен); `tvlauncher` не
-отключён. Вернуть: `TV=<ip>:<порт> ./restore.sh`.
+`setprop persist.jx.launcher.highpriority com.gathin.tvhome` (shell может, SELinux выключен); стандартные лаунчеры отключены
+(см. ниже). Вернуть: `TV=<ip>:<порт> ./restore.sh`.
 **Внимание:** экран Jixin «Источник при включении» (`BootSourceActivity`, он же пункт в меню источников) при
 каждом открытии перезаписывает `persist.jx.launcher.highpriority`: ставит `com.jixin.settings` при включённом
 автозапуске источника или пустую строку при выключенном — и Home возвращается к стандартному лаунчеру. Так и
-случилось 24.10 при проверке «Скрытых настроек». Если лаунчер слетел — снова
-`setprop persist.jx.launcher.highpriority com.gathin.tvhome`. Логика выбора Home — в
+случилось 24.10 при проверке «Скрытых настроек». **Исправлено:** стандартные лаунчеры `com.google.android.tvlauncher`
+и `com.jixin.launcher2` отключены, поэтому при пустом или чужом значении свойства Home всё равно ведёт в
+`com.gathin.tvhome` (проверено: открыть «Источник при включении» → свойство пустое → Home открывает наш лаунчер).
+Ограничение: «автозапуск источника» (сразу HDMI при включении) с нашим лаунчером не совместим. Логика выбора Home — в
 `ComputerEngine.applyPostResolutionFilter` (services.jar): при HOME оставляет только пакет из этого свойства
 (или из `persist.jx.app.boot.guide`, если задан). Тот же ключ умеет писать `jx.device.provider`
 (`replaceHighpriorityLauncher`, дублирует в `/mnt/vendor/tee/launcher.txt`) — не используем. Кнопка «Настройки» лаунчера открывает настройки Jixin
