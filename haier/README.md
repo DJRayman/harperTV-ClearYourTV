@@ -15,3 +15,8 @@ RTMA.250416.179 — та же, что в примере CleanYourTV `examples/ha
 - Стандартный `tvlauncher` отключён, Home ведёт в новый лаунчер (и после перезагрузки).
 - Прошивка при каждой загрузке включает обратно Netflix и `tvrecommendations`.
 - Lift не установлен, поэтому док дополняется первыми приложениями из сетки.
+- Тормоза: Кинопоиск (`ru.kinopoisk.tv`) стартует при загрузке, и в фоне его поток `KinopoiskAppLog` ест ~95% одного
+  ядра, плюс ~60% на сборку мусора. Фон ему запрещён: `cmd appops set ru.kinopoisk.tv RUN_ANY_IN_BACKGROUND ignore`
+  и `am set-standby-bucket ru.kinopoisk.tv restricted`; открытый на экране он работает как обычно.
+- Load average на этом ТВ всегда около 50 даже в простое: ~50 потоков драйверов MediaTek (AUDIO, CEC, DISP, DMX…)
+  спят в состоянии D. Смотреть надо на %CPU в `top`, а не на load average.

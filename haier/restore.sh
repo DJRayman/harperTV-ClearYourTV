@@ -10,3 +10,6 @@ $ADB -s "$TV" shell pm enable --user 0 com.google.android.tvlauncher
 $ADB -s "$TV" shell cmd package set-home-activity --user 0 com.google.android.tvlauncher/.MainActivity
 # NTP-сервер по умолчанию (time.android.com с этой сети не отвечал, часы стояли на 10 января)
 $ADB -s "$TV" shell settings delete global ntp_server
+# Кинопоиск снова может работать в фоне
+$ADB -s "$TV" shell cmd appops set ru.kinopoisk.tv RUN_ANY_IN_BACKGROUND allow
+$ADB -s "$TV" shell am set-standby-bucket ru.kinopoisk.tv active
