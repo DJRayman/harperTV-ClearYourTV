@@ -33,3 +33,5 @@ ru.haier.evo
 com.haier.apps.evoSmart
 # Google Play Movies: the service is closed, the app only sat in memory after boot
 com.google.android.videos
+# Vimu player: started at boot and stayed in memory, by the owner's choice
+net.gtvbox.vimuhd
