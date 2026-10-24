@@ -31,3 +31,5 @@ com.amazon.amazonvideo.livingroom
 # Haier Evo (also claims HOME) and its promo, by the owner's choice
 ru.haier.evo
 com.haier.apps.evoSmart
+# Google Play Movies: the service is closed, the app only sat in memory after boot
+com.google.android.videos
