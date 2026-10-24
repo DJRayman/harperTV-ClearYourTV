@@ -7,6 +7,9 @@ import java.util.List;
  * Every hidden screen this app knows, grouped by where it comes from. Only exported components are listed (an
  * ordinary app cannot start the others), and factory reset and debug screens are left out on purpose. Entries
  * missing on the device in hand are hidden at run time, so one build serves the projector and the TVs.
+ * Jixin's BootSourceActivity ("source at power-on") is left out too: merely opening it rewrites
+ * persist.jx.launcher.highpriority (empty when boot-to-source is off), and that property picks Home on Jixin firmware,
+ * so it threw the replacement launcher out.
  */
 final class Catalog {
     private Catalog() { }
@@ -71,7 +74,6 @@ final class Catalog {
                             "jixin.intent.action.PQ"),
                     dialog("Быстрое меню", "Изображение, таймер, фокус, Bluetooth", JIXIN,
                             "jixin.intent.action.SETTINGS_DIALOG"),
-                    screen("Источник при включении", "Что показывать после включения", JIXIN, JIXIN + ".BootSourceActivity"),
                     screen("Выбор источника", "HDMI, AV", JIXIN, JIXIN + ".InputSourceSelectActivity"),
                     screen("Голосовое управление", "Настройки голоса Jixin", JIXIN, JIXIN + ".VoiceActivity"),
                     screen("Все приложения", "Список приложений Jixin", JIXIN, "com.jixin.settings.AllAppActivity"),
