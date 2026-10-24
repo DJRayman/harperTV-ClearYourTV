@@ -2580,13 +2580,26 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         return true;
     }
 
-    /** The Live TV app's launch intent: its leanback entry point, or the configured action if it has none. */
+    /**
+     * The Live TV app's launch intent: the configured live_tv_uri, its leanback entry point, or the configured
+     * action if it has none.
+     */
     private Intent liveTvIntent() {
         if (liveTvPkg.isEmpty()) return null;
+        Intent byUri = liveTvUriIntent();
+        if (byUri != null) return byUri;
         Intent i = getPackageManager().getLeanbackLaunchIntentForPackage(liveTvPkg);
         if (i != null || liveTvAction.isEmpty()) return i;
         Intent byAction = new Intent(liveTvAction).setPackage(liveTvPkg);
         return getPackageManager().resolveActivity(byAction, 0) != null ? byAction : null;
+    }
+
+    /** config.xml live_tv_uri sent to the Live TV app, or null when it is not set or the app does not take it. */
+    private Intent liveTvUriIntent() {
+        String uri = getString(R.string.live_tv_uri);
+        if (uri.isEmpty()) return null;
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri)).setPackage(liveTvPkg);
+        return i.resolveActivity(getPackageManager()) != null ? i : null;
     }
 
     /** The TV's own source-selection panel, for TVs that have no TvInputManager (TCL Android TV 9): a
@@ -2813,7 +2826,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             addInputRow(rows, popup, R.drawable.ic_input, getString(R.string.inputs), -1, this::openSourcePanel);
         }
         Intent liveTv = liveTvIntent();
-        if (liveTv != null && tunerId != null) {
+        // live_tv_uri already says what to play; the app tunes its own last channel.
+        if (liveTv != null && tunerId != null && liveTvUriIntent() == null) {
             // Tune that input only when the Live TV package itself handles the URI.
             // The unrestricted input player also resolves it (that is how HDMI opens), but on the
             // AIWA AI PONT SA that player stays black, and the Live TV package does not handle the

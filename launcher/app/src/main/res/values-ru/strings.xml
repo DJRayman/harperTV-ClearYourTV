@@ -8,7 +8,7 @@
     <string name="connected">Подключено</string>
     <string name="standby">Ожидание</string>
     <string name="not_connected">Нет устройства</string>
-    <string name="live_tv">Телеканалы</string>
+    <string name="live_tv">Эфирное ТВ</string>
     <string name="no_inputs">Источники не найдены</string>
     <string name="good_morning">Доброе утро</string>
     <string name="good_afternoon">Добрый день</string>

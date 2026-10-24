@@ -33,7 +33,11 @@
     </string-array>
 
     <!-- The TV's Live TV / tuner app, offered at the end of the Inputs menu. Leave empty to omit. -->
-    <string name="live_tv_package" translatable="false">com.mediatek.wwtv.tvcenter</string>
+    <string name="live_tv_package" translatable="false">ru.sberdevices.starlivetv</string>
+    <!-- A URI the Live TV app opens with ACTION_VIEW, sent instead of its leanback entry point and instead of
+         tuning an input. Sber OS (SaluteTV) has no leanback entry for broadcast TV; its voice assistant sends
+         livetv://playback/channel to ru.sberdevices.starlivetv, which plays the last antenna channel. Empty = off. -->
+    <string name="live_tv_uri" translatable="false">livetv://playback/channel</string>
 
     <!-- Open the Live TV app above the first time Home comes up after the TV is switched on, for sets that are
          mostly used for broadcast TV. Once per boot: Home after that stays Home. Can also be set with
