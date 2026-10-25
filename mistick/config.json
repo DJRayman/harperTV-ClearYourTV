@@ -1,0 +1,7 @@
+{
+  "dock_apps": ["io.lift.app", "mobi.zona", "com.google.android.youtube.tv", "ru.kinopoisk.tv"],
+  "app_keys": [
+    "scan:416:com.google.android.youtube.tv",
+    "scan:207:io.lift.app"
+  ]
+}

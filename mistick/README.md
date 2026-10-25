@@ -9,6 +9,20 @@ UKG3.250107.001 / V816.0.26.6.10. Точный пример в CleanYourTV: `exa
   (katniss) и Chromecast (mediashell) оставлены по выбору владельца.
 - restore.sh — `TV=<ip>:5555 ./restore.sh`, включает всё обратно и возвращает стандартный лаунчер.
 
-Лаунчер `com.gathin.tvhome` (из `../launcher`), док: Lift, Zona, YouTube, Кинопоиск. Стандартный лаунчер
-`com.google.android.tvlauncher` отключён. Стик без HDMI-входа и тюнера, поэтому эфир/источники не используются.
-После перезагрузки всё держится, память выросла с ~664 до ~810 МБ свободных.
+Лаунчер `com.gathin.tvhome` (из `../launcher`). Настройки стика — в `config.json`, который кладётся на устройство
+(`/sdcard/Android/data/com.gathin.tvhome/files/config.json`) и перекрывает сборку:
+- `dock_apps` — док: Lift, Zona, YouTube, Кинопоиск;
+- `app_keys` — переназначение кнопок пульта (отключённые Netflix и Prime Video):
+  - **Netflix** → YouTube (`scan:416`), **Prime Video** → Lift (`scan:207`).
+
+Коды кнопок сняты с этого пульта (Xiaomi RC Consumer Control): у Netflix Android видит scancode 416 (не 215,
+который показывает `getevent` на уровне evdev — проверять нужно тем, что приходит в сервис). Нужна включённая
+служба спец-возможностей `com.gathin.tvhome/.InputKeyService`:
+
+    adb -s <ip>:5555 shell settings put secure enabled_accessibility_services com.gathin.tvhome/com.gathin.tvhome.InputKeyService
+    adb -s <ip>:5555 shell settings put secure accessibility_enabled 1
+    adb -s <ip>:5555 push config.json /sdcard/Android/data/com.gathin.tvhome/files/config.json
+
+Переназначение проверено настоящим пультом и переживает перезагрузку (инъекция клавиш через `adb shell input`
+до фильтра не доходит). Стандартный лаунчер `com.google.android.tvlauncher` отключён. Стик без HDMI-входа и
+тюнера, эфир/источники не используются. Память выросла с ~664 до ~810 МБ свободных.
