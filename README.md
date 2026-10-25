@@ -17,6 +17,7 @@ Android-телевизорах — минималистичный лаунчер
 | корень | **Harper / SaluteTV** (MediaTek m5621) | Sber OS (Android 9) | debloat + лаунчер, SmartTube, обои Bing, эфир, энергорежимы, кнопка Info |
 | `hyundai/` | **Hyundai AI PONT** (Changhong longshan) | Android TV 14 | debloat + лаунчер, часы по NTP, стандартный лаунчер отключён |
 | `haier/` | **Haier Android TV DVB2K** (broadway) | Android TV 11 | debloat + лаунчер, часы по NTP, Кинопоиск из фона |
+| `mistick/` | **Xiaomi Mi TV Stick 4K** (soul) | Android TV 14 | debloat + лаунчер, док Lift/Zona/YouTube/Кинопоиск |
 
 У каждого телевизора — свой `README.md`, `debloat.txt` и `restore.sh` в его папке.
 
