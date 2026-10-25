@@ -8,7 +8,6 @@ shots/
 .gradle/
 **/app/build/
 /launcher/build/
-/hidden-settings/build/
 local.properties
 *.apk
 # Samsung remote token (credential)
