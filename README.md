@@ -17,12 +17,11 @@ Android-телевизорах — минималистичный лаунчер
 | корень | **Harper / SaluteTV** (MediaTek m5621) | Sber OS (Android 9) | debloat + лаунчер, SmartTube, обои Bing, эфир, энергорежимы, кнопка Info |
 | `hyundai/` | **Hyundai AI PONT** (Changhong longshan) | Android TV 14 | debloat + лаунчер, часы по NTP, стандартный лаунчер отключён |
 | `haier/` | **Haier Android TV DVB2K** (broadway) | Android TV 11 | debloat + лаунчер, часы по NTP, Кинопоиск из фона |
-| `samsung/` | **Samsung UE55NU7170** (2018) | Tizen | ADB нет: только сетевой пульт + настройки вручную |
-| `lg/` | **LG 49UJ620V-ZA** (2017) | webOS | ADB нет: только сетевой пульт SSAP (без подписи) |
 
-У каждого телевизора — свой `README.md`, `debloat.txt` и `restore.sh` в его папке. Samsung и LG на Tizen/webOS:
-отключать системные приложения и ставить лаунчер нельзя, есть только сетевой пульт и настройки конфиденциальности
-вручную (см. их README).
+У каждого телевизора — свой `README.md`, `debloat.txt` и `restore.sh` в его папке.
+
+> Телевизоры на Tizen (Samsung) и webOS (LG) сюда не входят: ADB там нет, системные приложения не отключить и
+> лаунчер не поставить. webOS вынесен в отдельный репозиторий.
 
 ADB вызывается из WSL через обёртку над Windows-adb (`~/android/adbw`). Адрес телевизора подставляется вместо
 `TV_IP` (порт 5555). У каждого телевизора `backup/` с серийником и настройками в git **не** попадает.
